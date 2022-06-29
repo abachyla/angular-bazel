@@ -105,9 +105,9 @@ babel(
 
 html_insert_assets(
     name = "inject_scripts_for_dev",
-    outs = ["index.html"],
+    outs = ["_devapp/src/index.html"],
     args = [
-        "--html=$(execpath //src:example/index.html)",
+        "--html=$(execpath //src:index.html)",
         "--out=$@",
         "--roots=. $(RULEDIR)",
         "--assets",
@@ -115,7 +115,7 @@ html_insert_assets(
         "--scripts --module $(execpath :bundle-es2015)/index.dev.js",
     ],
     data = [
-        "//src:example/index.html",
+        "//src:index.html",
         ":bundle-es2015",
     ] + _ASSETS,
 )
@@ -155,13 +155,9 @@ terser_minified(
 
 html_insert_assets(
     name = "inject_scripts_for_prod",
-    # we can't output "src/example/index.html" since that collides with the devmode file.
-    # pkg_web rule will re-root paths that start with _{name} by default
-    # so we output "_prodapp/src/example/index.html" so that it is mapped to
-    # `example/index.html` in the web package.
     outs = ["_prodapp/src/index.html"],
     args = [
-        "--html=$(execpath //src:example/index.html)",
+        "--html=$(execpath //src:index.html)",
         "--out=$@",
         "--roots=. $(RULEDIR)",
         "--assets",
@@ -170,7 +166,7 @@ html_insert_assets(
         "--scripts --nomodule $(execpath :bundle-es5.min)/index.prod.js",
     ],
     data = [
-        "//src:example/index.html",
+        "//src:index.html",
         ":bundle-es2015.min",
         ":bundle-es5.min",
     ] + _ASSETS,
