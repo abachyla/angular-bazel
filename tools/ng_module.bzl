@@ -2,7 +2,7 @@
 
 load("//tools:typescript.bzl", "ts_project")
 
-def ng_ts_project(name, tsconfig = "//src:tsconfig", srcs = [], angular_assets = [], **kwargs):
+def ng_module(name, tsconfig = "//src:tsconfig", srcs = [], angular_assets = [], **kwargs):
     ts_project(
         name = name,
         tsconfig = tsconfig,
