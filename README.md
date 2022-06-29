@@ -1,4 +1,4 @@
-# Example Angular monorepo using Bazel
+# Example Angular app using Bazel
 
 
 ## Installation
@@ -13,7 +13,7 @@
 First we'll run the development server:
 
 ```bash
-$ ng serve
+$ npm run serve
 # or
 $ ibazel run //src:devserver
 ```
@@ -26,14 +26,14 @@ Now you can edit one of the source files (`src/lib/file.ts` is an easy one to un
 As soon as you save a change, the app should refresh in the browser with the new content.
 Our intent is that this time is less than two seconds, even for a large application.
 
-Control-C twice to kill the `devserver`.
+Ctrl-C twice to kill the `devserver`.
 
 ## Testing !!!!
 
 We can run all the unit tests:
 
 ```bash
-$ ng test
+$ npm run test
 # or
 $ bazel test //src/...
 ```
@@ -45,7 +45,7 @@ This can be slower than the development mode, because any change requires re-opt
 This example uses Rollup and Uglify, but other bundlers can be integrated with Bazel.
 
 ```bash
-$ ng serve --prod
+$ npm run serve-prod
 # or
 $ bazel run //src:prodserver
 ```
@@ -54,7 +54,7 @@ $ bazel run //src:prodserver
 If you want to clean bazel output, you could run:
 
 ```bash
-$npm run clean
+$ npm run clean
 # or
 $ bazel clean
 ```
