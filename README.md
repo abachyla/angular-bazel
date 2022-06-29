@@ -50,8 +50,8 @@ $ ng serve --prod
 $ bazel run //src:prodserver
 ```
 
-## Clean
-If you want to clean bazel generated data, you could run:
+## Clean Bazel output
+If you want to clean bazel output, you could run:
 
 ```bash
 $npm run clean
