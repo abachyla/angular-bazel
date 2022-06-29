@@ -1,13 +1,19 @@
 load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 
 package(default_visibility = ["//:__subpackages__"])
+
+sass_binary(
+    name = "app-styles",
+    src = "app.component.scss",
+)
 
 ng_ts_project(
     name = "app",
     srcs = glob(
         include = ["*.ts"],
     ),
-    angular_assets = ["app.component.html"],
+    angular_assets = ["app.component.html", ":app-styles"],
     deps = [
         "@npm//@angular/common",
         "@npm//@angular/core",
