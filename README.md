@@ -22,8 +22,7 @@ This runs in "watch mode", which means it will watch any files that are inputs t
 When the re-build is finished, it will trigger a LiveReload in the browser.
 
 This command prints a URL on the terminal. Open that page to see the demo app running.
-Now you can edit one of the source files (`src/lib/file.ts` is an easy one to understand and see the effect).
-As soon as you save a change, the app should refresh in the browser with the new content.
+Now you can edit one of the source files. As soon as you save a change, the app should refresh in the browser with the new content.
 Our intent is that this time is less than two seconds, even for a large application.
 
 Ctrl-C twice to kill the `devserver`.
