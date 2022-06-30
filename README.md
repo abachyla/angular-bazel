@@ -1,18 +1,14 @@
 # Example Angular app using Bazel
 
-
 ## Installation
 
+**Note:** If you use Windows, please use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) or a Virtual Machine with Linux installed to avoid incompatibility.
 
-### MacOS, Linux
-
-1. Install Bazel following instructions at http://bazel.build. 
-2. Install ibazel, which is a watch mode for Bazel not included in the standard distribution. See https://github.com/bazelbuild/bazel-watcher#installation.  
+1. Install Bazel following instructions at http://bazel.build.
     > You simply run `bazel` commands shown below, and don't need to install NodeJS, yarn, or any other dependencies.
+2. If you'd prefer to use npm commands, please install NodeJS/NPM. Here is an [instruction for WSL](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl).
+3. Install ibazel, which is a watch mode for Bazel not included in the standard distribution. See https://github.com/bazelbuild/bazel-watcher#installation.  
 4. Clone the application.
-
-### Windows
-Please see the instruction [here](windows-run.md)
 
 ## Development
 
