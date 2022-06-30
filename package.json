@@ -62,7 +62,7 @@
         "build": "bazel build //src:prodapp",
         "serve": "ibazel run //src:devserver",
         "serve-prod": "bazel run //src:prodserver",
-        "test": "bazel test //src/...",
+        "test": "bazel test --nobuild_runfile_links //src/...",
         "clean": "bazel clean",
         "postinstall": "node_modules/.bin/ngcc --async --properties fesm2015"
     }
