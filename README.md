@@ -3,10 +3,16 @@
 
 ## Installation
 
+
+### MacOS, Linux
+
 1. Install Bazel following instructions at http://bazel.build. 
 2. Install ibazel, which is a watch mode for Bazel not included in the standard distribution. See https://github.com/bazelbuild/bazel-watcher#installation.  
     > You simply run `bazel` commands shown below, and don't need to install NodeJS, yarn, or any other dependencies.
-4. Clone the application
+4. Clone the application.
+
+### Windows
+Please see the instruction [here](windows-run.md)
 
 ## Development
 
