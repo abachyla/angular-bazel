@@ -246,66 +246,42 @@ function configureWebTestSuiteBrowsers(conf) {
   log_verbose(`WEB_TEST_METADATA: ${JSON.stringify(webTestMetadata, null, 2)}`);
 
   if (webTestMetadata['environment'] === 'local') {
-    // When a local chrome or firefox browser is chosen such as
-    // "@io_bazel_rules_webtesting//browsers:chromium-local" or
-    // "@io_bazel_rules_webtesting//browsers:firefox-local"
-    // then the 'environment' will equal 'local' and
-    // 'webTestFiles' will contain the path to the binary to use
     const extractExe = findNamedFile(webTestMetadata, 'EXTRACT_EXE');
     webTestMetadata['webTestFiles'].forEach(webTestFiles => {
       const webTestNamedFiles = webTestFiles['namedFiles'];
       const archiveFile = webTestFiles['archiveFile'];
 
-      if (webTestNamedFiles['CHROMIUM']) {
-        // When karma is configured to use Chrome it will look for a CHROME_BIN
-        // environment variable.
-        if (archiveFile) {
-          process.env.CHROME_BIN =
-              extractWebArchive(extractExe, archiveFile, webTestNamedFiles['CHROMIUM']);
-        } else {
-          try {
-            process.env.CHROME_BIN = runfiles.resolve(webTestNamedFiles['CHROMIUM']);
-          } catch {
-            // Fail as this file is expected to be in runfiles
-            throw new Error(`Failed to resolve rules_webtesting Chromium binary '${
-                webTestNamedFiles['CHROMIUM']}' in runfiles`);
-          }
-        }
-        // Read any additional chrome options (as specified by the
-        // rules_webtesting manifest).
-        const chromeOptions = (webTestMetadata['capabilities'] || {})['goog:chromeOptions'];
-        const additionalArgs = (chromeOptions ? chromeOptions['args'] : []).filter(arg => {
-          // We never want to 'run' Chrome in headless mode.
-          return arg != '--headless';
-        });
-        const browser = process.env['DISPLAY'] ? 'Chrome' : 'ChromeHeadless';
-        if (!supportChromeSandboxing()) {
-          const launcher = 'CustomChromeWithoutSandbox';
-          conf.customLaunchers =
-              {[launcher]: {base: browser, flags: ['--no-sandbox', ...additionalArgs]}};
-          conf.browsers.push(launcher);
-        } else {
-          const launcher = 'CustomChrome';
-          conf.customLaunchers = {[launcher]: {base: browser, flags: additionalArgs}};
-          conf.browsers.push(launcher);
+      // When karma is configured to use Chrome it will look for a CHROME_BIN
+      // environment variable.
+      if (archiveFile) {
+        process.env.CHROME_BIN =
+            extractWebArchive(extractExe, archiveFile, webTestNamedFiles['CHROMIUM']);
+      } else {
+        try {
+          process.env.CHROME_BIN = runfiles.resolve(webTestNamedFiles['CHROMIUM']);
+        } catch {
+          // Fail as this file is expected to be in runfiles
+          throw new Error(`Failed to resolve rules_webtesting Chromium binary '${
+              webTestNamedFiles['CHROMIUM']}' in runfiles`);
         }
       }
-      if (webTestNamedFiles['FIREFOX']) {
-        // When karma is configured to use Firefox it will look for a
-        // FIREFOX_BIN environment variable.
-        if (archiveFile) {
-          process.env.FIREFOX_BIN =
-              extractWebArchive(extractExe, archiveFile, webTestNamedFiles['FIREFOX']);
-        } else {
-          try {
-            process.env.FIREFOX_BIN = runfiles.resolve(webTestNamedFiles['FIREFOX']);
-          } catch {
-            // Fail as this file is expected to be in runfiles
-            throw new Error(`Failed to resolve rules_webtesting Firefox binary '${
-                webTestNamedFiles['FIREFOX']}' in runfiles`);
-          }
-        }
-        conf.browsers.push(process.env['DISPLAY'] ? 'Firefox' : 'FirefoxHeadless');
+      // Read any additional chrome options (as specified by the
+      // rules_webtesting manifest).
+      const chromeOptions = (webTestMetadata['capabilities'] || {})['goog:chromeOptions'];
+      const additionalArgs = (chromeOptions ? chromeOptions['args'] : []).filter(arg => {
+        // We never want to 'run' Chrome in headless mode.
+        return arg != '--headless';
+      });
+      const browser = process.env['DISPLAY'] ? 'Chrome' : 'ChromeHeadless';
+      if (!supportChromeSandboxing()) {
+        const launcher = 'CustomChromeWithoutSandbox';
+        conf.customLaunchers =
+            {[launcher]: {base: browser, flags: ['--no-sandbox', ...additionalArgs]}};
+        conf.browsers.push(launcher);
+      } else {
+        const launcher = 'CustomChrome';
+        conf.customLaunchers = {[launcher]: {base: browser, flags: additionalArgs}};
+        conf.browsers.push(launcher);
       }
     });
   } else {
@@ -366,7 +342,7 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
     reporters: isBazelRun ? [] : ['progress'],
     plugins: [
-      require('karma-chrome-launcher'), require('karma-firefox-launcher'), require('karma-jasmine'),
+      require('karma-chrome-launcher'), require('karma-jasmine'),
       require('karma-sourcemap-loader'), require('karma-junit-reporter')
     ],
 

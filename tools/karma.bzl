@@ -10,7 +10,6 @@ load("@npm//karma:index.bzl", _karma = "karma")
 
 KARMA_PEER_DEPS = [
     "@npm//karma-chrome-launcher",
-    "@npm//karma-firefox-launcher",
     "@npm//karma-jasmine",
     "@npm//karma-sourcemap-loader",
     "@npm//karma-junit-reporter",

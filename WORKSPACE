@@ -80,7 +80,6 @@ load("@io_bazel_rules_webtesting//web/versioned:browsers-0.3.3.bzl", "browser_re
 
 browser_repositories(
     chromium = True,
-    firefox = True,
 )
 
 # Setup esbuild repositories
