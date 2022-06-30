@@ -28,15 +28,17 @@ Our intent is that this time is less than two seconds, even for a large applicat
 
 Ctrl-C twice to kill the `devserver`.
 
-## Testing !!!!
+## Testing
 
 We can run all the unit tests:
 
 ```bash
 $ npm run test
 # or
-$ bazel test //src/...
+$ bazel test --nobuild_runfile_links //src/...
 ```
+
+`--nobuild_runfile_links` is added as a workaround to run Chromium for macOS/Windows in Bazel. [More details here](https://github.com/bazelbuild/bazel/issues/4327#issuecomment-922106293)
 
 ## Production
 
