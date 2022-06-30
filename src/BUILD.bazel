@@ -8,8 +8,11 @@ load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("//tools:ng_module.bzl", "ng_module")
 load("//tools:typescript.bzl", "ts_test_project")
+load("//tools:ts_lint.bzl", "ts_lint")
 
 package(default_visibility = ["//:__subpackages__"])
+
+ts_lint()
 
 ts_config(
     name = "tsconfig",
@@ -17,7 +20,7 @@ ts_config(
 )
 
 ts_config(
-    name = "tsconfig-test",
+    name = "tsconfig_test",
     src = "tsconfig-test.json",
     deps = [":tsconfig"],
 )
