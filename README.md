@@ -29,7 +29,7 @@ Ctrl-C twice to kill the `devserver`.
 
 ## Testing
 
-We can run all the unit tests:
+We can run all the unit tests and linters:
 
 ```bash
 $ npm run test

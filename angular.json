@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-bazel-example": {
+    "angular-bazel": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -37,7 +37,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngbazel:build"
+            "browserTarget": "angular-bazel:build"
           }
         },
         "test": {
@@ -60,36 +60,12 @@
           }
         }
       }
-    },
-    "ngbazel-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-builders/bazel:build",
-          "options": {
-            "bazelCommand": "test",
-            "targetLabel": "//e2e:devserver_test"
-          },
-          "configurations": {
-            "production": {
-              "targetLabel": "//e2e:prodserver_test"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
   },
-  "defaultProject": "ngbazel"
+  "defaultProject": "angular-bazel",
+  "cli": {
+    "analytics": false,
+    "defaultCollection": "@angular-eslint/schematics"
+  }
   
 }

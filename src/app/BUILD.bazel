@@ -2,11 +2,14 @@ load("//tools:ng_module.bzl", "ng_module")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//tools:karma.bzl", "karma_web_test_suite")
 load("//tools:typescript.bzl", "ts_test_project")
+load("//tools:ts_lint.bzl", "ts_lint")
 
 package(default_visibility = ["//:__subpackages__"])
 
+ts_lint()
+
 sass_binary(
-    name = "app-styles",
+    name = "app_styles",
     src = "app.component.scss",
 )
 
@@ -19,7 +22,10 @@ ng_module(
             "app-routing.module.ts",
         ],
     ),
-    angular_assets = ["app.component.html", ":app-styles"],
+    angular_assets = [
+        "app.component.html",
+        ":app_styles"
+    ],
     deps = [
         "@npm//@angular/common",
         "@npm//@angular/core",
