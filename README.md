@@ -2,7 +2,7 @@
 
 ## Installation
 
-**Note:** If you use Windows, please use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) or a Virtual Machine with Linux installed to avoid incompatibility.
+**Note:** If you use Windows, please use [WSL](https://docs.microsoft.com/en-us/windows/wsl/) or a Virtual Machine with Linux installed to avoid incompatibility.
 
 1. Install Bazel following instructions at http://bazel.build.
     > You simply run `bazel` commands shown below, and don't need to install NodeJS, yarn, or any other dependencies.
