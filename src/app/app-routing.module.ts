@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
 /**
-  Main application module.
+  Main application routes module.
  */
 @NgModule({
   imports: [
