@@ -24,8 +24,7 @@
         "eslint:recommended",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:prettier/recommended",
-        "airbnb-base"
+        "google"
       ],
       "rules": {
         "@angular-eslint/component-selector": [
@@ -45,7 +44,29 @@
           }
         ],
         "import/prefer-default-export": "off",
-        "import/no-unresolved": "off"
+        "import/no-unresolved": "off",
+        "new-cap": [
+          "error",
+          {
+            "capIsNew": true,
+            "capIsNewExceptions": [
+              "Component",
+              "Directive",
+              "HostBinding",
+              "HostListener",
+              "Injectable",
+              "Input",
+              "NgModule",
+              "Output",
+              "Pipe",
+              "ViewChild",
+              "ViewChildren"
+            ],
+            "newIsCap": true,
+            "properties": true
+          }
+        ],
+        "require-jsdoc": "off"
       }
     },
     {

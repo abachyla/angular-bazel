@@ -8,7 +8,6 @@ def ts_lint(name = None, args = [], **kwargs):
      data = srcs + [
          "//:.gitignore",
          "//:.eslintrc.json",
-         "//:.prettierrc",
          "//src:tsconfig.json",
          "@npm//@typescript-eslint/parser",
          "@npm//@typescript-eslint/eslint-plugin",
@@ -17,9 +16,7 @@ def ts_lint(name = None, args = [], **kwargs):
          "@npm//@angular-eslint/template-parser",
          "@npm//@angular-eslint/schematics",
          "@npm//eslint-plugin-import",
-         "@npm//eslint-plugin-prettier",
-         "@npm//eslint-config-airbnb-base",
-         "@npm//prettier",
+         "@npm//eslint-config-google",
      ],
      args = args + ["--ignore-path", "$(location //:.gitignore)"] +
             ["$(location " + x + ")" for x in srcs],

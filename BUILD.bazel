@@ -4,5 +4,4 @@ exports_files([
     "favicon.ico",
     ".eslintrc.json",
     ".gitignore",
-    ".prettierrc",
 ])
