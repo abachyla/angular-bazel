@@ -22,6 +22,6 @@ def ts_lint(name = None, args = [], **kwargs):
          "@npm//prettier",
      ],
      args = args + ["--ignore-path", "$(location //:.gitignore)"] +
-            ["$(location " + x + ")" for x in srcs] + ["--fix"],
+            ["$(location " + x + ")" for x in srcs],
      tags = ["lint"]
  )
