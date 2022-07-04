@@ -1,6 +1,7 @@
 """Helper macros for compiling typescript with consistent config"""
 
 load("@npm//@bazel/typescript:index.bzl", _ts_project = "ts_project")
+load("//tools:ts_lint.bzl", "ts_lint")
 
 def ts_project(name, tsconfig = "//src:tsconfig", **kwargs):
     _ts_project(
@@ -21,3 +22,5 @@ def ts_test_project(name, tsconfig = "//src:tsconfig_test", deps = [], **kwargs)
         declaration_map = True,
         **kwargs
     )
+
+    ts_lint()

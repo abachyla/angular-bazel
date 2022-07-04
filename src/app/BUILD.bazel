@@ -2,11 +2,8 @@ load("//tools:ng_module.bzl", "ng_module")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//tools:karma.bzl", "karma_web_test_suite")
 load("//tools:typescript.bzl", "ts_test_project")
-load("//tools:ts_lint.bzl", "ts_lint")
 
 package(default_visibility = ["//:__subpackages__"])
-
-ts_lint()
 
 sass_binary(
     name = "app_styles",
@@ -36,8 +33,10 @@ ng_module(
 )
 
 ts_test_project(
-    name = "test_lib",
-    srcs = glob(["*.spec.ts"]),
+    name = "app_tests",
+    srcs = glob([
+        "app.component.spec.ts"
+    ]),
     deps = [
         ":app",
         "@npm//@angular/core",
@@ -57,10 +56,10 @@ karma_web_test_suite(
     ],
     specs = [
         "//src:initialize_testbed.js",
-        ":test_lib",
+        ":app_tests",
     ],
     deps = [
-        ":test_lib",
+        ":app_tests",
         "//src:initialize_testbed",
     ],
 )
